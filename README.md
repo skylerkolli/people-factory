@@ -9,4 +9,4 @@
 *Add an empty paragraph to the page
 *Use the form values to do someting with that paragraph
 #### Super Mega Bonus Credit Hyper Fighting
-*Change teh appearance of the paragraph (think CSS) based on a value from the form
+*Change the appearance of the paragraph (think CSS) based on a value from the form
