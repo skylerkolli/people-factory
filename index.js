@@ -10,6 +10,23 @@ function renderColor(color){
     return div
 }
 
+function renderListItem(label,value) {
+ const item = document.createElement("li")
+ item.textContent= `${label}: ${value}`
+
+ return item
+}
+
+
+
+function renderList(personData){
+    const list = document.createElement("ul")
+    Object.keys(personData).map(function(label) {
+        renderListItem(label, personData[label])
+        
+    })
+    return list              
+}
 
 function handleSubmit(ev) {
     ev.preventDefault()
@@ -18,23 +35,27 @@ function handleSubmit(ev) {
     const name = f.personName.value
     const favoriteColor = f.favoriteColor.value
     const age = f.age.value
-    const colorDiv = <div style="background-color: ${favoriteColor}; width: 100px; height: 50px;"></div>
+    const person= {
+        name: "Sari",
+        favoriteColor: "black",
+        age: "confidential",
+    }
+    details.appendChild(renderList(person))
+    //const colorDiv = <div style="background-color: ${favoriteColor}; width: 100px; height: 50px;"></div>
     
    
-    const nameItem = documents.createElement("li")
-    nameItem.textContent= `Name: ${name}`
+    // const nameItem = documents.createElement("li")
+    // nameItem.textContent= `Name: ${name}`
     
-    const colorItem = documents.createElement("li")
-    colorItem.innerHTML= `Favorite Color: ${renderColor(favoriteColor).outerHTML}`
+    // const colorItem = documents.createElement("li")
+    // colorItem.innerHTML= `Favorite Color: ${renderColor(favoriteColor).outerHTML}`
    
-    const ageItem = documents.createElement("li")
-    ageItem.textContent= `Age:${age}`
+    // const ageItem = documents.createElement("li")
+    // ageItem.textContent= `Age:${age}`
        
     const list = documents.createElement("ul")
     list.appendChild(nameItem)
-    
     list.appendChild(colorItem)
-    
     list.appendChild(ageItem)
 
     details.appendChild(list)
