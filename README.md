@@ -14,3 +14,4 @@
 Day 2 Lab
 - add form values to.details using document.createElement and appendChild, Instead of innerHTML
 - Break out some of this functionality into a separate function
+

@@ -10,9 +10,9 @@ function renderColor(color){
     return div
 }
 
-function renderListItem(label,value) {
+function renderListItem(label, value) {
  const item = document.createElement("li")
- item.textContent= `${label}: ${value}`
+ item.innerHTML= `${label}: ${value}`
 
  return item
 }
@@ -22,8 +22,10 @@ function renderListItem(label,value) {
 function renderList(personData){
     const list = document.createElement("ul")
     Object.keys(personData).map(function(label) {
+        const item = renderListItem(label, personData)
         renderListItem(label, personData[label])
-        
+        list.appendChild(item)
+
     })
     return list              
 }
@@ -32,14 +34,13 @@ function handleSubmit(ev) {
     ev.preventDefault()
     const f = ev.target
     const details = document.querySelector("#details")
-    const name = f.personName.value
-    const favoriteColor = f.favoriteColor.value
-    const age = f.age.value
+    
     const person= {
-        name: "Sari",
-        favoriteColor: "black",
-        age: "confidential",
+        name: f.personName.value,
+        favoriteColor: renderColor(f.favoriteColor.value),
+        age: f.age.value,
     }
+    const list = renderList(person)
     details.appendChild(renderList(person))
     //const colorDiv = <div style="background-color: ${favoriteColor}; width: 100px; height: 50px;"></div>
     
