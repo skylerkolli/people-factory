@@ -1,90 +1,59 @@
+const peopleFactory = {
+  init: function(formSelector) {
+    const personForm = document.querySelector(formSelector)
+    personForm.addEventListener('submit', this.handleSubmit.bind(this))
+  },
 
-const peopleFactory = {   
-    const personForm = document.querySelector("#personForm")
-    //const foodForm = document.querySelector('#foodForm')
+  renderColor: function(color) {
+    const div = document.createElement('div')
+    div.style.backgroundColor = color
+    div.style.width = '100px'
+    div.style.height = '50px'
 
-    function renderColor(color){
-        const div =document.createElement("div")
-        div.style.backgroundColor = color
-        div.style.width = "100px"
-        div.style.height = "50px"
+    return div
+  },
 
-
-        return div
-    }
-
-    function renderListItem(label, value) {
-    const item = document.createElement("li")
-    item.innerHTML= `${label}: ${value}`
-
+  renderListItem: function(label, value) {
+    const item = document.createElement('li')
+    const dt = document.createElement('dt')
+    const dd = document.createElement('dd')
+    dt.textContent = label
+    dd.innerHTML = value
+    item.appendChild(dt)
+    item.appendChild(dd)
     return item
+  },
+
+  renderList: function(personData) {
+    const list = document.createElement('dl')
+
+    // ['name', 'favoriteColor', 'age']
+    Object.keys(personData).map((label) => {
+      const item = this.renderListItem(label, personData[label])
+      list.appendChild(item)
+    })
+
+    return list
+  },
+
+  handleSubmit: function(ev) {
+    ev.preventDefault()
+    const f = ev.target
+    const details = document.querySelector('#details')
+
+    const person = {
+      name: f.personName.value,
+      favoriteColor: this.renderColor(f.favoriteColor.value).outerHTML,
+      age: f.age.value,
     }
-
-
-
-    function renderList(personData){
-        const list = document.createElement("ul")
-        Object.keys(personData).map(function(label) {
-            const item = renderListItem(label, personData)
-            renderListItem(label, personData[label])
-            list.appendChild(item)
-
-        })
-        return list              
-    }
-
-    function handleSubmit(ev) {
-        ev.preventDefault()
-        const f = ev.target
-        const details = document.querySelector("#details")
-        
-        const person= {
-            name: f.personName.value,
-            favoriteColor: renderColor(f.favoriteColor.value),
-            age: f.age.value,
-        }
-        const list = renderList(person)
-        details.appendChild(renderList(person))
-        //const colorDiv = <div style="background-color: ${favoriteColor}; width: 100px; height: 50px;"></div>
-        
     
-        // const nameItem = documents.createElement("li")
-        // nameItem.textContent= `Name: ${name}`
-        
-        // const colorItem = documents.createElement("li")
-        // colorItem.innerHTML= `Favorite Color: ${renderColor(favoriteColor).outerHTML}`
-    
-        // const ageItem = documents.createElement("li")
-        // ageItem.textContent= `Age:${age}`
-        
-        const list = documents.createElement("ul")
-        list.appendChild(nameItem)
-        list.appendChild(colorItem)
-        list.appendChild(ageItem)
+    const list = this.renderList(person)
+    details.appendChild(list)
+  },
+}
 
-        details.appendChild(list)
-            //const heading=document.querySelector("h1")
-    // const paragraph=document.querySelector('#foodForm')
-        //console.log(f.personName.value)
-        
-        
-    //     const boldedName = document.createElement("strong")
-    //     boldedName.textContent = name
-    //     details.appendChild(boldedName)
+peopleFactory.init('#personForm')
 
-    //     heading.textContent = f.personName.value + " favorite food is "+ f.foodName.value
-    //     paragraph.textContent = f.foodName.value + " is " + f.personName.value + " favorite food"
-    //     paragraph.style.fontSize= smaller
 
-        // details.innerHTML =`
-        //     <ul>
-        //      <li>Name: ${name}</li>
-        //      <li>Favorite Color: ${favoriteColor}</li>
-        //      <li>Age:${age}</li>
-        //     </ul>`
-        
-    }
-    personForm.addEventListener("submit", handleSubmit)
-}()
 
 
