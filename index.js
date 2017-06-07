@@ -1,87 +1,90 @@
-const personForm = document.querySelector("#personForm")
-//const foodForm = document.querySelector('#foodForm')
-function renderColor(color){
-    const div =document.createElement("div")
-    div.style.backgroundColor = color
-    div.style.width = "100px"
-    div.style.height = "50px"
+
+const peopleFactory = {   
+    const personForm = document.querySelector("#personForm")
+    //const foodForm = document.querySelector('#foodForm')
+
+    function renderColor(color){
+        const div =document.createElement("div")
+        div.style.backgroundColor = color
+        div.style.width = "100px"
+        div.style.height = "50px"
 
 
-    return div
-}
-
-function renderListItem(label, value) {
- const item = document.createElement("li")
- item.innerHTML= `${label}: ${value}`
-
- return item
-}
-
-
-
-function renderList(personData){
-    const list = document.createElement("ul")
-    Object.keys(personData).map(function(label) {
-        const item = renderListItem(label, personData)
-        renderListItem(label, personData[label])
-        list.appendChild(item)
-
-    })
-    return list              
-}
-
-function handleSubmit(ev) {
-    ev.preventDefault()
-    const f = ev.target
-    const details = document.querySelector("#details")
-    
-    const person= {
-        name: f.personName.value,
-        favoriteColor: renderColor(f.favoriteColor.value),
-        age: f.age.value,
+        return div
     }
-    const list = renderList(person)
-    details.appendChild(renderList(person))
-    //const colorDiv = <div style="background-color: ${favoriteColor}; width: 100px; height: 50px;"></div>
-    
-   
-    // const nameItem = documents.createElement("li")
-    // nameItem.textContent= `Name: ${name}`
-    
-    // const colorItem = documents.createElement("li")
-    // colorItem.innerHTML= `Favorite Color: ${renderColor(favoriteColor).outerHTML}`
-   
-    // const ageItem = documents.createElement("li")
-    // ageItem.textContent= `Age:${age}`
-       
-    const list = documents.createElement("ul")
-    list.appendChild(nameItem)
-    list.appendChild(colorItem)
-    list.appendChild(ageItem)
 
-    details.appendChild(list)
-        //const heading=document.querySelector("h1")
-   // const paragraph=document.querySelector('#foodForm')
-    //console.log(f.personName.value)
-    
-    
-//     const boldedName = document.createElement("strong")
-//     boldedName.textContent = name
-//     details.appendChild(boldedName)
+    function renderListItem(label, value) {
+    const item = document.createElement("li")
+    item.innerHTML= `${label}: ${value}`
 
-//     heading.textContent = f.personName.value + " favorite food is "+ f.foodName.value
-//     paragraph.textContent = f.foodName.value + " is " + f.personName.value + " favorite food"
-//     paragraph.style.fontSize= smaller
+    return item
+    }
 
-    // details.innerHTML =`
-    //     <ul>
-    //      <li>Name: ${name}</li>
-    //      <li>Favorite Color: ${favoriteColor}</li>
-    //      <li>Age:${age}</li>
-    //     </ul>`
+
+
+    function renderList(personData){
+        const list = document.createElement("ul")
+        Object.keys(personData).map(function(label) {
+            const item = renderListItem(label, personData)
+            renderListItem(label, personData[label])
+            list.appendChild(item)
+
+        })
+        return list              
+    }
+
+    function handleSubmit(ev) {
+        ev.preventDefault()
+        const f = ev.target
+        const details = document.querySelector("#details")
+        
+        const person= {
+            name: f.personName.value,
+            favoriteColor: renderColor(f.favoriteColor.value),
+            age: f.age.value,
+        }
+        const list = renderList(person)
+        details.appendChild(renderList(person))
+        //const colorDiv = <div style="background-color: ${favoriteColor}; width: 100px; height: 50px;"></div>
+        
     
-}
-personForm.addEventListener("submit", handleSubmit)
+        // const nameItem = documents.createElement("li")
+        // nameItem.textContent= `Name: ${name}`
+        
+        // const colorItem = documents.createElement("li")
+        // colorItem.innerHTML= `Favorite Color: ${renderColor(favoriteColor).outerHTML}`
+    
+        // const ageItem = documents.createElement("li")
+        // ageItem.textContent= `Age:${age}`
+        
+        const list = documents.createElement("ul")
+        list.appendChild(nameItem)
+        list.appendChild(colorItem)
+        list.appendChild(ageItem)
 
+        details.appendChild(list)
+            //const heading=document.querySelector("h1")
+    // const paragraph=document.querySelector('#foodForm')
+        //console.log(f.personName.value)
+        
+        
+    //     const boldedName = document.createElement("strong")
+    //     boldedName.textContent = name
+    //     details.appendChild(boldedName)
+
+    //     heading.textContent = f.personName.value + " favorite food is "+ f.foodName.value
+    //     paragraph.textContent = f.foodName.value + " is " + f.personName.value + " favorite food"
+    //     paragraph.style.fontSize= smaller
+
+        // details.innerHTML =`
+        //     <ul>
+        //      <li>Name: ${name}</li>
+        //      <li>Favorite Color: ${favoriteColor}</li>
+        //      <li>Age:${age}</li>
+        //     </ul>`
+        
+    }
+    personForm.addEventListener("submit", handleSubmit)
+}()
 
 
